@@ -31,11 +31,11 @@ void PlayCard(WarPlayer& player)
 
 bool BiggerPlayedCardNumberOfActivePlayer(const WarPlayer& a, const WarPlayer& b)
 {
-	if (!a.IsActive())
+	if (a.IsActive() == b.IsActive())
 	{
-		return true;
+		return a.GetTopPlayedCard().GetNumber() < b.GetTopPlayedCard().GetNumber();
 	}
-	return b.IsActive() && a.GetTopPlayedCard().GetNumber() < b.GetTopPlayedCard().GetNumber();
+	return b.IsActive();
 }
 
 void WarGame::PlayTurn()
