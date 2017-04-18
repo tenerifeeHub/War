@@ -4,6 +4,7 @@
 WarPlayer::WarPlayer()
 : drawPile()
 , playedCards()
+, isActive(true)
 {
 }
 
@@ -16,8 +17,29 @@ void WarPlayer::AddCardToDeckBottom(const Card& card)
 	drawPile.AddToBottom(card);
 }
 
+bool WarPlayer::CanPlayCard()
+{
+	return drawPile.CanDraw();
+}
+
 void WarPlayer::PlayCard()
 {
-	assert(drawPile.CanDraw());
+	assert(CanPlayCard());
 	playedCards.AddToTop(drawPile.Draw());
+}
+
+void WarPlayer::SetActiveStatus(bool isActive)
+{
+	this->isActive = isActive;
+}
+
+const Card& WarPlayer::GetTopPlayedCard() const
+{
+	assert(playedCards.CanDraw());
+	return playedCards.GetTopCard();
+}
+
+bool WarPlayer::IsActive() const
+{
+	return isActive;
 }

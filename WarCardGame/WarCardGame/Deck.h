@@ -21,6 +21,8 @@ public:
 
 	void AddToTop(const Card& card);
 	void AddToBottom(const Card& card);
+
+	const Card& GetTopCard() const;
 };
 
 #endif

@@ -67,3 +67,8 @@ void Deck::AddToBottom(const Card& card)
 {
 	cards.push_back(card);
 }
+
+const Card& Deck::GetTopCard() const
+{
+	return cards.front();
+}

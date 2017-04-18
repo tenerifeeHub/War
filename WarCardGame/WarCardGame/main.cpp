@@ -18,12 +18,14 @@ void main()
 	auto warGame = warGameFactory.CreateGame(3);
 	CardPrinter printer(GetStdHandle(STD_OUTPUT_HANDLE));
 	
-	PlayingCardsDeckFactory deckFactory(2, 15);
-	auto deck = deckFactory.CreateDeck();
-	deck.Shuffle();
-	while (deck.CanDraw())
+	for (auto k = 0; k < 10; ++k)
 	{
-		printer.PrintCard(deck.Draw());
+		warGame.PlayTurn();
+		for (auto i = 0; i < warGame.GetPlayersCount(); ++i)
+		{
+			printer.PrintCard(warGame.GetPlayer(i).GetTopPlayedCard(), warGame.GetPlayer(i).IsActive());
+			printer.Ident();
+		}
 		printer.NewLine();
 	}
 }

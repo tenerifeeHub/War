@@ -3,6 +3,8 @@
 #include<iostream>
 #include<assert.h>
 
+#define RED_CARD_WINNING FOREGROUND_RED | FOREGROUND_INTENSITY | BACKGROUND_BLUE
+#define BLACK_CARD_WINNING FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE
 #define RED_CARD FOREGROUND_RED | FOREGROUND_INTENSITY
 #define BLACK_CARD FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 #define RESET_COLOR FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
@@ -11,11 +13,15 @@ CardPrinter::CardPrinter(HANDLE console)
 : console(console)
 , suitColors()
 {
-	suitColors[Suit::Diamonds] = RED_CARD;
-	suitColors[Suit::Clubs] = BLACK_CARD;
-	suitColors[Suit::Hearts] = RED_CARD;
-	suitColors[Suit::Spades] = BLACK_CARD;
-	
+	suitColors[0][Suit::Diamonds] = RED_CARD;
+	suitColors[0][Suit::Clubs] = BLACK_CARD;
+	suitColors[0][Suit::Hearts] = RED_CARD;
+	suitColors[0][Suit::Spades] = BLACK_CARD;
+	suitColors[1][Suit::Diamonds] = RED_CARD_WINNING;
+	suitColors[1][Suit::Clubs] = BLACK_CARD_WINNING;
+	suitColors[1][Suit::Hearts] = RED_CARD_WINNING;
+	suitColors[1][Suit::Spades] = BLACK_CARD_WINNING;
+
 	numberKeys[11] = 'J';
 	numberKeys[12] = 'Q';
 	numberKeys[13] = 'K';
@@ -49,15 +55,20 @@ void CardPrinter::PrintSuit(Suit suit)
 	WriteConsoleW(console, suitUnicodes[suit], 1, &n, nullptr);
 }
 
-void CardPrinter::PrintCard(const Card& card)
+void CardPrinter::PrintCard(const Card& card, bool isWinning)
 {
 	assert(card.GetSuit() < Suit::Count && card.GetSuit() > -1);
-	SetConsoleTextAttribute(console, suitColors[card.GetSuit()]);
+	SetConsoleTextAttribute(console, suitColors[isWinning][card.GetSuit()]);
 
 	PrintNumber(card.GetNumber());
 	PrintSuit(card.GetSuit());
 
 	SetConsoleTextAttribute(console, RESET_COLOR);
+}
+
+void CardPrinter::Ident()
+{
+	std::cout << "\t";
 }
 
 void CardPrinter::NewLine()

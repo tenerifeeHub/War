@@ -15,6 +15,8 @@ public:
 
 	int GetPlayersCount() const;
 	const WarPlayer& GetPlayer(int index) const;
+
+	void PlayTurn();
 };
 
 #endif
