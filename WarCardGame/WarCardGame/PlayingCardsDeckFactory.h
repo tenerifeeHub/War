@@ -1,9 +1,8 @@
 #ifndef PlayingCardsDeckFactory_h
 #define PlayingCardsDeckFactory_h
 
-#include<list>
-
 class Card;
+class Deck;	
 
 class PlayingCardsDeckFactory
 {
@@ -15,7 +14,7 @@ public:
 	PlayingCardsDeckFactory(int minNumber, int numberLimit);
 	~PlayingCardsDeckFactory();
 
-	std::list<Card> CreateDeck() const;
+	Deck CreateDeck() const;
 };
 
 #endif

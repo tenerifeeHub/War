@@ -1,6 +1,8 @@
 #include "PlayingCardsDeckFactory.h"
 
+#include<list>
 #include "Card.h"
+#include "Deck.h"
 
 PlayingCardsDeckFactory::PlayingCardsDeckFactory(int minNumber, int numberLimit)
 : minNumber(minNumber)
@@ -13,7 +15,7 @@ PlayingCardsDeckFactory::~PlayingCardsDeckFactory()
 {
 }
 
-std::list<Card> PlayingCardsDeckFactory::CreateDeck() const
+Deck PlayingCardsDeckFactory::CreateDeck() const
 {
 	std::list<Card> cards;
 
@@ -25,5 +27,5 @@ std::list<Card> PlayingCardsDeckFactory::CreateDeck() const
 		}
 	}
 
-	return cards;
+	return Deck(cards);
 }

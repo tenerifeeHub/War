@@ -80,12 +80,14 @@
   <ItemGroup>
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CardPrinter.cpp" />
+    <ClCompile Include="Deck.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayingCardsDeckFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.h" />
     <ClInclude Include="CardPrinter.h" />
+    <ClInclude Include="Deck.h" />
     <ClInclude Include="PlayingCardsDeckFactory.h" />
     <ClInclude Include="Suit.h" />
   </ItemGroup>

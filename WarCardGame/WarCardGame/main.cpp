@@ -2,6 +2,7 @@
 
 #include<windows.h>
 #include "Card.h"
+#include "Deck.h"
 #include "PlayingCardsDeckFactory.h"
 #include "CardPrinter.h"
 
@@ -11,10 +12,10 @@ void main()
 	auto deck = deckFactory.CreateDeck();
 	CardPrinter printer(GetStdHandle(STD_OUTPUT_HANDLE));
 	
-	while (deck.size() > 0)
+	Card card;
+	while (deck.Draw(card))
 	{
-		printer.PrintCard(deck.front());
+		printer.PrintCard(card);
 		printer.NewLine();
-		deck.pop_front();
 	}
 }
