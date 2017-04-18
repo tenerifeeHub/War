@@ -13,6 +13,8 @@ public:
 	Deck(std::list<Card> cards);
 	~Deck();
 
+	void Shuffle();
+
 	bool CanDraw() const;
 	bool Draw(Card& card);
 };
