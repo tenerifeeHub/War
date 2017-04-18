@@ -7,8 +7,8 @@
 #define RESET_COLOR FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
 
 CardPrinter::CardPrinter(HANDLE console)
-	: console(console)
-	, suitColors()
+: console(console)
+, suitColors()
 {
 	suitColors[Suit::Diamonds] = RED_CARD;
 	suitColors[Suit::Clubs] = BLACK_CARD;
