@@ -1,6 +1,7 @@
 #include "CardPrinter.h"
 #include "Card.h"
 #include<iostream>
+#include<assert.h>
 
 #define RED_CARD FOREGROUND_RED | FOREGROUND_INTENSITY
 #define BLACK_CARD FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY
@@ -50,6 +51,7 @@ void CardPrinter::PrintSuit(Suit suit)
 
 void CardPrinter::PrintCard(const Card& card)
 {
+	assert(card.GetSuit() < Suit::Count && card.GetSuit() > -1);
 	SetConsoleTextAttribute(console, suitColors[card.GetSuit()]);
 
 	PrintNumber(card.GetNumber());
