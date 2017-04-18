@@ -18,6 +18,8 @@ private:
 	void GiveCardsToWinner();
 	void ReactivatePlayers();
 
+	int GetActivePlayersCount() const;
+
 public:
 	WarGame(std::vector<WarPlayer> players);
 	~WarGame();

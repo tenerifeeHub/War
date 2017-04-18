@@ -80,3 +80,8 @@ const Card& Deck::GetTopCard() const
 {
 	return cards.front();
 }
+
+int Deck::Count() const
+{
+	return cards.size();
+}

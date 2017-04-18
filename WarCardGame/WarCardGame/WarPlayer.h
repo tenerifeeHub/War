@@ -27,6 +27,9 @@ public:
 	Deck& GetPlayedCards();
 	const Card& GetTopPlayedCard() const;
 	bool IsActive() const;
+
+	int GetRemainingCardsInDeckCount() const;
+	int GetPlayedCardsCount() const;
 };
 
 #endif

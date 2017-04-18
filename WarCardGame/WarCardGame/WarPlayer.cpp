@@ -53,3 +53,13 @@ bool WarPlayer::IsActive() const
 {
 	return isActive;
 }
+
+int WarPlayer::GetRemainingCardsInDeckCount() const
+{
+	return drawPile.Count();
+}
+
+int WarPlayer::GetPlayedCardsCount() const
+{
+	return playedCards.Count();
+}

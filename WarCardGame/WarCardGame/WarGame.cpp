@@ -64,6 +64,11 @@ bool IsActivePlayer(const WarPlayer& player)
 	return player.IsActive();
 }
 
+int WarGame::GetActivePlayersCount() const
+{
+	return std::count_if(players.begin(), players.end(), IsActivePlayer);
+}
+
 void WarGame::DeactivatePlayersWithLosingCards()
 {
 	int maxNumber = MaxPlayedCardNumberOfActivePlayers();
@@ -72,8 +77,7 @@ void WarGame::DeactivatePlayersWithLosingCards()
 		player.SetActiveStatus(player.IsActive() && player.GetTopPlayedCard().GetNumber() == maxNumber);
 	}
 
-	int activePlayersCount = std::count_if(players.begin(), players.end(), IsActivePlayer);
-	currentTurn = (activePlayersCount > 1 ? GameTurn::War : GameTurn::TakeCards);
+	currentTurn = (GetActivePlayersCount() > 1 ? GameTurn::War : GameTurn::TakeCards);
 }
 
 void WarGame::GiveCardsToWinner()
@@ -93,7 +97,7 @@ void ActivatePlayerWithRemainingCards(WarPlayer& player)
 void WarGame::ReactivatePlayers()
 {
 	std::for_each(players.begin(), players.end(), ActivatePlayerWithRemainingCards);
-	currentTurn = GameTurn::PlayTopCard;
+	currentTurn = (GetActivePlayersCount() > 1 ? GameTurn::PlayTopCard : GameTurn::Finished);
 }
 
 void WarGame::PlayTurn()

@@ -24,6 +24,8 @@ public:
 	void AddToBottom(Deck& deckSource);
 
 	const Card& GetTopCard() const;
+
+	int Count() const;
 };
 
 #endif

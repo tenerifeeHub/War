@@ -15,10 +15,10 @@ void main()
 	srand(time(nullptr));
 
 	WarGameFactory warGameFactory(PlayingCardsDeckFactory(2, 15));
-	auto warGame = warGameFactory.CreateGame(12);
+	auto warGame = warGameFactory.CreateGame(6);
 	CardPrinter printer(GetStdHandle(STD_OUTPUT_HANDLE));
 	
-	for (auto k = 0; k < 25; ++k)
+	while (warGame.GetCurrentTurn() != GameTurn::Finished)
 	{
 		warGame.PlayTurn();
 		for (auto i = 0; i < warGame.GetPlayersCount(); ++i)
@@ -26,14 +26,15 @@ void main()
 			if (warGame.GetPlayer(i).IsActive())
 			{
 				printer.PrintCard(warGame.GetPlayer(i).GetTopPlayedCard());
+				std::cout << "[" << warGame.GetPlayer(i).GetRemainingCardsInDeckCount() << "]";
 			}
-			printer.Ident();
+			std::cout << "\t";
 		}
 		if (warGame.GetCurrentTurn() == GameTurn::TakeCards)
 		{
-			printer.NewLine();
+			std::cout << std::endl;
 			warGame.PlayTurn();
 		}
-		printer.NewLine();
+		std::cout << std::endl;
 	}
 }
