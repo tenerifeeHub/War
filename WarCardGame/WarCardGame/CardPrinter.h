@@ -12,7 +12,7 @@ class CardPrinter
 private:
 	HANDLE console;
 	const wchar_t* suitUnicodes[Suit::Count];
-	WORD suitColors[2][Suit::Count];
+	WORD suitColors[Suit::Count];
 	std::map<int, char> numberKeys;
 
 private:
@@ -23,7 +23,7 @@ public:
 	CardPrinter(HANDLE console);
 	~CardPrinter();
 
-	void PrintCard(const Card& card, bool isWinning = false);
+	void PrintCard(const Card& card);
 
 	void Ident();
 	void NewLine();

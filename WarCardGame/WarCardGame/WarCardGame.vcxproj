@@ -91,6 +91,7 @@
     <ClInclude Include="Card.h" />
     <ClInclude Include="CardPrinter.h" />
     <ClInclude Include="Deck.h" />
+    <ClInclude Include="GameTurn.h" />
     <ClInclude Include="PlayingCardsDeckFactory.h" />
     <ClInclude Include="Suit.h" />
     <ClInclude Include="WarGame.h" />

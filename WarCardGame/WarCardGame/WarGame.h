@@ -3,16 +3,25 @@
 
 #include<vector>
 #include "WarPlayer.h"
+#include "GameTurn.h"
 
 class WarGame
 {
 private:
+	GameTurn currentTurn;
 	std::vector<WarPlayer> players;
+
+	void PlayCards(int amount);
+	int MaxPlayedCardNumberOfActivePlayers() const;
+
+	void DeactivatePlayersWithLosingCards();
+	void ReactivatePlayers();
 
 public:
 	WarGame(std::vector<WarPlayer> players);
 	~WarGame();
 
+	GameTurn GetCurrentTurn() const;
 	int GetPlayersCount() const;
 	const WarPlayer& GetPlayer(int index) const;
 

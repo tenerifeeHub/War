@@ -1,7 +1,7 @@
 #ifndef WarGameFactory_h
 #define WarGameFactory_h
 
-#include "PlayingCardsDeckFactory.h";
+#include "PlayingCardsDeckFactory.h"
 
 class WarGame;
 
