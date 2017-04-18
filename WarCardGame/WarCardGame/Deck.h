@@ -10,6 +10,7 @@ private:
 	std::list<Card> cards;
 
 public:
+	Deck();
 	Deck(std::list<Card> cards);
 	~Deck();
 
@@ -17,6 +18,9 @@ public:
 
 	bool CanDraw() const;
 	bool Draw(Card& card);
+
+	void AddToTop(const Card& card);
+	void AddToBottom(const Card& card);
 };
 
 #endif

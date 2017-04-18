@@ -1,6 +1,11 @@
 #include "Deck.h"
 #include<vector>
 
+Deck::Deck()
+: cards()
+{
+}
+
 Deck::Deck(std::list<Card> cards)
 	: cards(cards)
 {
@@ -53,4 +58,14 @@ bool Deck::Draw(Card& card)
 		return true;
 	}
 	return false;
+}
+
+void Deck::AddToTop(const Card& card)
+{
+	cards.push_front(card);
+}
+
+void Deck::AddToBottom(const Card& card)
+{
+	cards.push_back(card);
 }

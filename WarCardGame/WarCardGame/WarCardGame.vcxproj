@@ -83,6 +83,9 @@
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayingCardsDeckFactory.cpp" />
+    <ClCompile Include="WarGame.cpp" />
+    <ClCompile Include="WarGameFactory.cpp" />
+    <ClCompile Include="WarPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.h" />
@@ -90,6 +93,9 @@
     <ClInclude Include="Deck.h" />
     <ClInclude Include="PlayingCardsDeckFactory.h" />
     <ClInclude Include="Suit.h" />
+    <ClInclude Include="WarGame.h" />
+    <ClInclude Include="WarGameFactory.h" />
+    <ClInclude Include="WarPlayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
