@@ -14,6 +14,11 @@ CardPrinter::CardPrinter(HANDLE console)
 	suitColors[Suit::Clubs] = BLACK_CARD;
 	suitColors[Suit::Hearts] = RED_CARD;
 	suitColors[Suit::Spades] = BLACK_CARD;
+	
+	numberKeys[11] = 'J';
+	numberKeys[12] = 'Q';
+	numberKeys[13] = 'K';
+	numberKeys[14] = 'A';
 
 	suitUnicodes[Suit::Diamonds] = L"\u2666";
 	suitUnicodes[Suit::Clubs] = L"\u2663";
@@ -21,9 +26,20 @@ CardPrinter::CardPrinter(HANDLE console)
 	suitUnicodes[Suit::Spades] = L"\u2660";
 }
 
-
 CardPrinter::~CardPrinter()
 {
+}
+
+void CardPrinter::PrintNumber(int number)
+{
+	if (numberKeys.find(number) == numberKeys.end())
+	{
+		std::cout << number;
+	}
+	else
+	{
+		std::cout << numberKeys[number];
+	}
 }
 
 void CardPrinter::PrintSuit(Suit suit)
@@ -36,7 +52,7 @@ void CardPrinter::PrintCard(const Card& card)
 {
 	SetConsoleTextAttribute(console, suitColors[card.GetSuit()]);
 
-	std::cout << card.GetNumber();
+	PrintNumber(card.GetNumber());
 	PrintSuit(card.GetSuit());
 
 	SetConsoleTextAttribute(console, RESET_COLOR);
