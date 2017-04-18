@@ -17,7 +17,7 @@ public:
 	void Shuffle();
 
 	bool CanDraw() const;
-	bool Draw(Card& card);
+	Card Draw();
 
 	void AddToTop(const Card& card);
 	void AddToBottom(const Card& card);

@@ -8,13 +8,15 @@ class Card;
 class WarPlayer
 {
 private:
-	Deck cards;
+	Deck drawPile;
+	Deck playedCards;
 
 public:
 	WarPlayer();
 	~WarPlayer();
 
 	void AddCardToDeckBottom(const Card& card);
+	void PlayCard();
 };
 
 #endif

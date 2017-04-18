@@ -22,10 +22,9 @@ WarGame WarGameFactory::CreateGame(int playersCount) const
 	deck.Shuffle();
 
 	int playerIndex = 0;
-	Card card;
-	while (deck.Draw(card))
+	while (deck.CanDraw())
 	{
-		players[playerIndex].AddCardToDeckBottom(card);
+		players[playerIndex].AddCardToDeckBottom(deck.Draw());
 		playerIndex = (playerIndex + 1) % playersCount;
 	}
 

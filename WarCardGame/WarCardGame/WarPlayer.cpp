@@ -1,7 +1,9 @@
 #include "WarPlayer.h"
+#include<assert.h>
 
 WarPlayer::WarPlayer()
-: cards()
+: drawPile()
+, playedCards()
 {
 }
 
@@ -11,5 +13,11 @@ WarPlayer::~WarPlayer()
 
 void WarPlayer::AddCardToDeckBottom(const Card& card)
 {
-	cards.AddToBottom(card);
+	drawPile.AddToBottom(card);
+}
+
+void WarPlayer::PlayCard()
+{
+	assert(drawPile.CanDraw());
+	playedCards.AddToTop(drawPile.Draw());
 }

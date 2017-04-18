@@ -1,5 +1,6 @@
 #include "Deck.h"
 #include<vector>
+#include<assert.h>
 
 Deck::Deck()
 : cards()
@@ -49,15 +50,12 @@ bool Deck::CanDraw() const
 	return cards.size() > 0;
 }
 
-bool Deck::Draw(Card& card)
+Card Deck::Draw()
 {
-	if (CanDraw())
-	{
-		card = cards.front();
-		cards.pop_front();
-		return true;
-	}
-	return false;
+	assert(cards.size() > 0);
+	Card card = cards.front();
+	cards.pop_front();
+	return card;
 }
 
 void Deck::AddToTop(const Card& card)
