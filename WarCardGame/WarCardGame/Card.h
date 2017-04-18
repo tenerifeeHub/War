@@ -8,6 +8,7 @@ class Card
 private:
 	int number;
 	Suit suit;
+
 public:
 	Card();
 	Card(int number, Suit suit);
