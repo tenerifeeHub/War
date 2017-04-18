@@ -17,11 +17,14 @@ public:
 	~WarPlayer();
 
 	void AddCardToDeckBottom(const Card& card);
+	void AddCardsToDeckBottom(Deck& deck);
+
 	bool CanPlayCard();
 	void PlayCard();
 
 	void SetActiveStatus(bool isActive);
 
+	Deck& GetPlayedCards();
 	const Card& GetTopPlayedCard() const;
 	bool IsActive() const;
 };

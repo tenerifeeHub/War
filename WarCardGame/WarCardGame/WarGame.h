@@ -15,6 +15,7 @@ private:
 	int MaxPlayedCardNumberOfActivePlayers() const;
 
 	void DeactivatePlayersWithLosingCards();
+	void GiveCardsToWinner();
 	void ReactivatePlayers();
 
 public:

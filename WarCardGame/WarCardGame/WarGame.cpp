@@ -76,6 +76,15 @@ void WarGame::DeactivatePlayersWithLosingCards()
 	currentTurn = (activePlayersCount > 1 ? GameTurn::War : GameTurn::TakeCards);
 }
 
+void WarGame::GiveCardsToWinner()
+{
+	auto& winner = *std::find_if(players.begin(), players.end(), IsActivePlayer);
+	for (auto& player : players)
+	{
+		winner.AddCardsToDeckBottom(player.GetPlayedCards());
+	}
+}
+
 void ActivatePlayerWithRemainingCards(WarPlayer& player)
 {
 	player.SetActiveStatus(player.CanPlayCard());
@@ -94,15 +103,20 @@ void WarGame::PlayTurn()
 	case GameTurn::PlayTopCard:
 		PlayCards(1);
 		break;
+	
 	case GameTurn::EvaluatePlayedCards:
 		DeactivatePlayersWithLosingCards();
 		break;
+
 	case GameTurn::TakeCards:
+		GiveCardsToWinner();
 		ReactivatePlayers();
 		break;
+	
 	case GameTurn::War:
 		PlayCards(MaxPlayedCardNumberOfActivePlayers());
 		break;
+	
 	default:
 		break;
 	}

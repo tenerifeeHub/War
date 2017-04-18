@@ -18,7 +18,7 @@ void main()
 	auto warGame = warGameFactory.CreateGame(12);
 	CardPrinter printer(GetStdHandle(STD_OUTPUT_HANDLE));
 	
-	for (auto k = 0; k < 10; ++k)
+	for (auto k = 0; k < 25; ++k)
 	{
 		warGame.PlayTurn();
 		for (auto i = 0; i < warGame.GetPlayersCount(); ++i)

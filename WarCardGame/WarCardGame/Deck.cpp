@@ -68,6 +68,14 @@ void Deck::AddToBottom(const Card& card)
 	cards.push_back(card);
 }
 
+void Deck::AddToBottom(Deck& deckSource)
+{
+	while (deckSource.CanDraw())
+	{
+		AddToBottom(deckSource.Draw());
+	}
+}
+
 const Card& Deck::GetTopCard() const
 {
 	return cards.front();

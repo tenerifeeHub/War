@@ -17,6 +17,11 @@ void WarPlayer::AddCardToDeckBottom(const Card& card)
 	drawPile.AddToBottom(card);
 }
 
+void WarPlayer::AddCardsToDeckBottom(Deck& deck)
+{
+	drawPile.AddToBottom(deck);
+}
+
 bool WarPlayer::CanPlayCard()
 {
 	return drawPile.CanDraw();
@@ -31,6 +36,11 @@ void WarPlayer::PlayCard()
 void WarPlayer::SetActiveStatus(bool isActive)
 {
 	this->isActive = isActive;
+}
+
+Deck& WarPlayer::GetPlayedCards()
+{
+	return playedCards;
 }
 
 const Card& WarPlayer::GetTopPlayedCard() const
