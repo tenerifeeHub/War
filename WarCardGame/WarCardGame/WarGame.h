@@ -12,7 +12,7 @@ private:
 	std::vector<WarPlayer> players;
 
 	void PlayCards(int amount);
-	int MaxPlayedCardNumberOfActivePlayers() const;
+	int MaxPlayedCardNumber() const;
 
 	void DeactivatePlayersWithLosingCards();
 	void GiveCardsToWinner();

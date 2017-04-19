@@ -44,19 +44,17 @@ void WarGame::PlayCards(int amount)
 	currentTurn = GameTurn::EvaluatePlayedCards;
 }
 
-bool BiggerPlayedCardNumberOfActivePlayer(const WarPlayer& a, const WarPlayer& b)
+int WarGame::MaxPlayedCardNumber() const
 {
-	if (a.IsActive() == b.IsActive())
+	int maxValue = -1;
+	for (const auto& player : players)
 	{
-		return a.GetTopPlayedCard().GetNumber() < b.GetTopPlayedCard().GetNumber();
+		if (player.IsActive() && player.GetTopPlayedCard().GetNumber() > maxValue)
+		{
+			maxValue = player.GetTopPlayedCard().GetNumber();
+		}
 	}
-	return b.IsActive();
-}
-
-int WarGame::MaxPlayedCardNumberOfActivePlayers() const
-{
-	return std::max_element(players.cbegin(), players.cend(),
-		BiggerPlayedCardNumberOfActivePlayer)->GetTopPlayedCard().GetNumber();
+	return maxValue;
 }
 
 bool IsActivePlayer(const WarPlayer& player)
@@ -71,7 +69,7 @@ int WarGame::GetActivePlayersCount() const
 
 void WarGame::DeactivatePlayersWithLosingCards()
 {
-	int maxNumber = MaxPlayedCardNumberOfActivePlayers();
+	int maxNumber = MaxPlayedCardNumber();
 	for (auto& player : players)
 	{
 		player.SetActiveStatus(player.IsActive() && player.GetTopPlayedCard().GetNumber() == maxNumber);
@@ -118,7 +116,7 @@ void WarGame::PlayTurn()
 		break;
 	
 	case GameTurn::War:
-		PlayCards(MaxPlayedCardNumberOfActivePlayers());
+		PlayCards(MaxPlayedCardNumber());
 		break;
 	
 	default:
