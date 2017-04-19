@@ -19,7 +19,7 @@ void WarPlayer::AddCardToDeckBottom(const Card& card)
 
 void WarPlayer::AddCardsToDeckBottom(Deck& deck)
 {
-	drawPile.AddToBottom(deck);
+	drawPile.AddToBottomFromDeck(deck);
 }
 
 bool WarPlayer::CanPlayCard()

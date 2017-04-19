@@ -1,6 +1,7 @@
 #include "WarGameFactory.h"
 
 #include<vector>
+#include<assert.h>
 #include "WarGame.h"
 #include "WarPlayer.h"
 
@@ -16,6 +17,7 @@ WarGameFactory::~WarGameFactory()
 
 WarGame WarGameFactory::CreateGame(int playersCount) const
 {
+	assert(playersCount > 1);
 	std::vector<WarPlayer> players(playersCount);
 
 	auto deck = deckFactory.CreateDeck();

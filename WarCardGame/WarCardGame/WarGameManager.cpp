@@ -54,10 +54,6 @@ void WarGameManager::PrintTurn()
 		}
 		std::cout << std::endl;
 		break;
-	case GameTurn::War:
-		break;
-	case GameTurn::PlayTopCard:
-		break;
 	case GameTurn::TakeCards:
 		std::cout << "Round Winner is player " << GetWinnerIndex() + 1 << std::endl << std::endl;
 		break;

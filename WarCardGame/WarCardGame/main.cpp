@@ -11,9 +11,22 @@
 #include "CardPrinter.h"
 #include "WarGameManager.h"
 
-void main()
+
+void SetRandomSeed()
 {
 	srand(time(nullptr));
+}
+
+void PrintRandomSeed()
+{
+	auto seed = time(nullptr);
+	srand(seed);
+	std::cout << "Random seed: " << seed << std::endl;
+}
+
+void main()
+{
+	SetRandomSeed();
 
 	WarGameFactory warGameFactory(PlayingCardsDeckFactory(2, 15));
 	auto warGame = warGameFactory.CreateGame(12);

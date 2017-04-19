@@ -1,6 +1,8 @@
 #include "Deck.h"
 #include<vector>
 #include<assert.h>
+#include<algorithm>
+#include<iterator>
 
 Deck::Deck()
 : cards()
@@ -19,10 +21,7 @@ Deck::~Deck()
 
 void MoveCardsToVector(std::vector<Card>& pile, std::list<Card>& cards)
 {
-	for (auto card : cards)
-	{
-		pile.push_back(card);
-	}
+	std::copy(cards.begin(), cards.end(), std::back_inserter(pile));
 	cards.clear();
 }
 
@@ -68,7 +67,7 @@ void Deck::AddToBottom(const Card& card)
 	cards.push_back(card);
 }
 
-void Deck::AddToBottom(Deck& deckSource)
+void Deck::AddToBottomFromDeck(Deck& deckSource)
 {
 	while (deckSource.CanDraw())
 	{

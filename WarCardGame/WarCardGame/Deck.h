@@ -21,7 +21,7 @@ public:
 
 	void AddToTop(const Card& card);
 	void AddToBottom(const Card& card);
-	void AddToBottom(Deck& deckSource);
+	void AddToBottomFromDeck(Deck& deckSource);
 
 	const Card& GetTopCard() const;
 
