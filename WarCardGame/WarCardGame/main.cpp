@@ -16,9 +16,12 @@ void main()
 	srand(time(nullptr));
 
 	WarGameFactory warGameFactory(PlayingCardsDeckFactory(2, 15));
-	auto warGame = warGameFactory.CreateGame(6);
+	auto warGame = warGameFactory.CreateGame(12);
 	CardPrinter printer(GetStdHandle(STD_OUTPUT_HANDLE));
 	WarGameManager gameManager(warGame, printer);
 
 	gameManager.Play();
+
+	int x;
+	std::cin >> x;
 }

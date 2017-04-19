@@ -1,5 +1,6 @@
 #include "WarGameManager.h"
 #include<iostream>
+#include<assert.h>
 
 WarGameManager::WarGameManager(const WarGame& game, const CardPrinter& printer)
 : game(game)
@@ -12,11 +13,24 @@ WarGameManager::~WarGameManager()
 {
 }
 
-void WarGameManager::Play()
+int WarGameManager::GetWinnerIndex() const
 {
-	while (game.GetCurrentTurn() != GameTurn::Finished)
+	for (auto i = 0; i < game.GetPlayersCount(); ++i)
 	{
-		game.PlayTurn();
+		if (game.GetPlayer(i).IsActive())
+		{
+			return i;
+		}
+	}
+	assert(false && "Winner player index not found");
+	return -1;
+}
+
+void WarGameManager::PrintTurn()
+{
+	switch (game.GetCurrentTurn())
+	{
+	case GameTurn::EvaluatePlayedCards:
 		for (auto i = 0; i < game.GetPlayersCount(); ++i)
 		{
 			if (game.GetPlayer(i).IsActive())
@@ -26,25 +40,26 @@ void WarGameManager::Play()
 			}
 			std::cout << "\t";
 		}
-		if (game.GetCurrentTurn() == GameTurn::TakeCards)
-		{
-			std::cout << std::endl;
-			game.PlayTurn();
-		}
 		std::cout << std::endl;
+		break;
+	case GameTurn::War:
+		break;
+	case GameTurn::PlayTopCard:
+		break;
+	case GameTurn::TakeCards:
+		std::cout << "Round Winner is player " << GetWinnerIndex() + 1 << std::endl << std::endl;
+		break;
+	case GameTurn::Finished:
+		std::cout << "Final Winner is player " << GetWinnerIndex() + 1 << std::endl;
+		break;
 	}
-	//switch (game.GetCurrentTurn())
-	//{
-	//case GameTurn::EvaluatePlayedCards:
-	//	break;
-	//case GameTurn::War:
-	//	break;
-	//case GameTurn::PlayTopCard:
-	//	break;
-	//case GameTurn::TakeCards:
-	//	break;
-	//case GameTurn::Finished:
-	//	std::cout << "Winner is player %d";
-	//	break;
-	//}
+}
+
+void WarGameManager::Play()
+{
+	while (game.GetCurrentTurn() != GameTurn::Finished)
+	{
+		game.PlayTurn();		
+		PrintTurn();
+	}
 }
