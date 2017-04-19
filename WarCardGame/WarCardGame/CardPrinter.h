@@ -24,9 +24,6 @@ public:
 	~CardPrinter();
 
 	void PrintCard(const Card& card);
-
-	void Ident();
-	void NewLine();
 };
 
 #endif

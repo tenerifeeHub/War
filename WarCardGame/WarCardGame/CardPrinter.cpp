@@ -59,13 +59,3 @@ void CardPrinter::PrintCard(const Card& card)
 
 	SetConsoleTextAttribute(console, RESET_COLOR);
 }
-
-void CardPrinter::Ident()
-{
-	std::cout << "\t";
-}
-
-void CardPrinter::NewLine()
-{
-	std::cout << std::endl;
-}
