@@ -7,7 +7,9 @@ class WarGame;
 
 class WarGameFactory
 {
+private:
 	PlayingCardsDeckFactory deckFactory;
+
 public:
 	WarGameFactory(const PlayingCardsDeckFactory& deckFactory);
 	~WarGameFactory();

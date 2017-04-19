@@ -11,6 +11,7 @@ private:
 	GameTurn currentTurn;
 	std::vector<WarPlayer> players;
 
+private:
 	void PlayCards(int amount);
 	int MaxPlayedCardNumber() const;
 

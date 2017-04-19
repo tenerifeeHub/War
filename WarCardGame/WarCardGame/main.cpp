@@ -21,7 +21,4 @@ void main()
 	WarGameManager gameManager(warGame, printer);
 
 	gameManager.Play();
-
-	int x;
-	std::cin >> x;
 }
