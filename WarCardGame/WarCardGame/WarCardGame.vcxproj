@@ -85,6 +85,7 @@
     <ClCompile Include="PlayingCardsDeckFactory.cpp" />
     <ClCompile Include="WarGame.cpp" />
     <ClCompile Include="WarGameFactory.cpp" />
+    <ClCompile Include="WarGameManager.cpp" />
     <ClCompile Include="WarPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +97,7 @@
     <ClInclude Include="Suit.h" />
     <ClInclude Include="WarGame.h" />
     <ClInclude Include="WarGameFactory.h" />
+    <ClInclude Include="WarGameManager.h" />
     <ClInclude Include="WarPlayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
