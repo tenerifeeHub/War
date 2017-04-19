@@ -19,6 +19,7 @@ private:
 	void ReactivatePlayers();
 
 	int GetActivePlayersCount() const;
+	int GetActivePlayerWithCardsInDeckCount() const;
 
 public:
 	WarGame(std::vector<WarPlayer> players);

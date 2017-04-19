@@ -13,17 +13,29 @@ WarGameManager::~WarGameManager()
 {
 }
 
-int WarGameManager::GetWinnerIndex() const
+std::vector<int> WarGameManager::GetWinnersIndices() const
 {
+	std::vector<int> winners;
 	for (auto i = 0; i < game.GetPlayersCount(); ++i)
 	{
 		if (game.GetPlayer(i).IsActive())
 		{
-			return i;
+			winners.push_back(i);
 		}
 	}
-	assert(false && "Winner player index not found");
-	return -1;
+	return winners;
+}
+
+int WarGameManager::GetWinnerIndex() const
+{
+	auto winners = GetWinnersIndices();
+	assert(winners.size() > 0);
+	return winners[0];
+}
+
+bool WarGameManager::HasOnlyOneWinner() const
+{
+	return GetWinnersIndices().size() == 1;
 }
 
 void WarGameManager::PrintTurn()
@@ -50,7 +62,20 @@ void WarGameManager::PrintTurn()
 		std::cout << "Round Winner is player " << GetWinnerIndex() + 1 << std::endl << std::endl;
 		break;
 	case GameTurn::Finished:
-		std::cout << "Final Winner is player " << GetWinnerIndex() + 1 << std::endl;
+		if (HasOnlyOneWinner())
+		{
+			std::cout << "Final Winner is player " << GetWinnerIndex() + 1 << std::endl;
+		}
+		else
+		{
+			std::cout << "Tie between players ";
+			auto winnerIndices = GetWinnersIndices();
+			for (int i = 0; i < winnerIndices.size() - 1; ++i)
+			{
+				std::cout << winnerIndices[i] << ", ";
+			}
+			std::cout << winnerIndices[winnerIndices.size() - 1] << std::endl;
+		}
 		break;
 	}
 }
@@ -59,7 +84,7 @@ void WarGameManager::Play()
 {
 	while (game.GetCurrentTurn() != GameTurn::Finished)
 	{
-		game.PlayTurn();		
+		game.PlayTurn();
 		PrintTurn();
 	}
 }
